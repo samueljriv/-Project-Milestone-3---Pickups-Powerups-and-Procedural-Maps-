@@ -18,7 +18,6 @@ public class TankPawn : Pawn
 
     public override void MoveForward()
     {
-        Debug.Log("updating");
         mover.Move(transform.forward, moveSpeed);
     }
 
