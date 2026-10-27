@@ -6,22 +6,28 @@ public abstract class Pawn : MonoBehaviour
 {
     // Scripts 
     public Mover mover;
-    //public Shooter shooter;
-    //public Health health;
+    public Shooter shooter;
+    public Health health;
 
     // Components
 
     // Variables
     public float moveSpeed;
     public float turnSpeed;
+    public GameObject bulletPrefab;
+    public float fireForce;
+    public float damageDone;
+    public float bulletLifespan;
+    public float shotsPerSecond;
+
 
 
     // Start is called before the first frame update
     public virtual void Start()
     {
         mover = GetComponent<Mover>();
-        //shooter = GetComponent<Shooter>();
-        //health = GetComponent<Health>();
+        shooter = GetComponent<Shooter>();
+        health = GetComponent<Health>();
     }
 
     // Update is called once per frame
@@ -35,4 +41,7 @@ public abstract class Pawn : MonoBehaviour
     public abstract void MoveBackward();
     public abstract void RotateClockwise();
     public abstract void RotateCounterClockwise();
+    public abstract void Shoot();
+    public abstract void SneakToggle(bool toggleSneaking);
+    public abstract void RotateTowards(Vector3 targetPosition);
 }

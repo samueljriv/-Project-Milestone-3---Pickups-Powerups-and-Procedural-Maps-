@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4253777738926662703
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8049861593898400328}
+  m_Layer: 0
+  m_Name: FiringPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8049861593898400328
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4253777738926662703}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.6, z: 1.21}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8472363239411973276}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9140110242557339174
 GameObject:
   m_ObjectHideFlags: 0
@@ -13,8 +44,11 @@ GameObject:
   - component: {fileID: 7338841709425821683}
   - component: {fileID: 7517358304172106182}
   - component: {fileID: 3810481284651348724}
-  - component: {fileID: 5937411444662840091}
   - component: {fileID: 8379786873782061804}
+  - component: {fileID: 2588401273521303237}
+  - component: {fileID: 6390053068170130790}
+  - component: {fileID: 8195082305524199762}
+  - component: {fileID: 8601473983089130231}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -34,7 +68,8 @@ Transform:
   m_LocalPosition: {x: -0.23520489, y: 0.027530521, z: -3.4298012}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8049861593898400328}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4772754503465530169
@@ -121,9 +156,66 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TankPawn
   mover: {fileID: 0}
+  shooter: {fileID: 0}
+  health: {fileID: 0}
   moveSpeed: 10
   turnSpeed: 100
---- !u!54 &5937411444662840091
+  bulletPrefab: {fileID: 6695150734682733723, guid: e3332c854b58bf91aa858a3fd5f0b9d7, type: 3}
+  fireForce: 1000
+  damageDone: 10
+  bulletLifespan: 2
+  shotsPerSecond: 1
+  sneakSpeedModifier: 0.5
+--- !u!135 &8379786873782061804
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9140110242557339174}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.6582884
+  m_Center: {x: 0.14093518, y: 0.63384825, z: 0.111234784}
+--- !u!114 &2588401273521303237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9140110242557339174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6619b307acb07e55a99369a9f0bdf86c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TankShooter
+  firepointTransform: {fileID: 8049861593898400328}
+--- !u!114 &6390053068170130790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9140110242557339174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c666e76a8bebadaba86d0ed73046eeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  currentHealth: 100
+  maxHealth: 100
+  death: {fileID: 0}
+--- !u!54 &8195082305524199762
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,24 +242,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!135 &8379786873782061804
-SphereCollider:
+--- !u!114 &8601473983089130231
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9140110242557339174}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.6582884
-  m_Center: {x: 0.14093518, y: 0.63384825, z: 0.111234784}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24b773cb6060db825bfcf68d09b51673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeathDestroy
