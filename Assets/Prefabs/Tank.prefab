@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 6390053068170130790}
   - component: {fileID: 8195082305524199762}
   - component: {fileID: 8601473983089130231}
+  - component: {fileID: 8138830864445914017}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -165,6 +166,7 @@ MonoBehaviour:
   damageDone: 10
   bulletLifespan: 2
   shotsPerSecond: 1
+  Invisible: 0
   sneakSpeedModifier: 0.5
 --- !u!135 &8379786873782061804
 SphereCollider:
@@ -254,3 +256,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24b773cb6060db825bfcf68d09b51673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeathDestroy
+--- !u!114 &8138830864445914017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9140110242557339174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb3ec49ffbb98a5bb84e0c9946d44b0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerupManager
+  powerups: []

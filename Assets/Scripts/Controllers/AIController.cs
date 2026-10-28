@@ -225,6 +225,11 @@ public class AIController : Controller
 
     public bool CanSee(GameObject target)
     {
+        Pawn pawn = target.GetComponent<Pawn>();
+        if (pawn.Invisible)
+        {
+            return false;
+        }
         Vector3 agentToTargetVector = target.transform.position - transform.position;
         float angleToTarget = Vector3.Angle(agentToTargetVector, pawn.transform.forward);
         if (angleToTarget < fieldOfView)
@@ -236,7 +241,6 @@ public class AIController : Controller
             RaycastHit hitData = new RaycastHit();
             if (Physics.Raycast(theRay, out hitData, lookAheadDistance))
             {
-                Debug.Log(hitData.collider.gameObject.name);
                 if (hitData.collider.gameObject == target)
                 {
                     return true;
@@ -322,7 +326,6 @@ public class AIController : Controller
         RaycastHit hitData = new RaycastHit();
         if (Physics.Raycast(theRay, out hitData, findEnemyDistance))
         {
-            Debug.Log(hitData.collider.gameObject.name);
             if (hitData.collider.gameObject == target)
             {
                 return true;
